@@ -8,16 +8,21 @@ namespace SimpleTweetMap.Web
 {
 	public class UserHub : Hub
 	{
-		public void Hello()
+		private readonly Broadcaster broadCaster;
+
+		public UserHub()
+			: this(Broadcaster.Instance)
 		{
-			Clients.All.hello("Hello World!");
 		}
 
-		public override System.Threading.Tasks.Task OnConnected()
+		public UserHub(Broadcaster broadCaster)
 		{
-			Hello();
-			return base.OnConnected();
+			this.broadCaster = broadCaster;
+		}
+
+		public void Hello(string message)
+		{
+			Clients.All.hello(message);
 		}
 	}
-
 }
