@@ -41,12 +41,8 @@
 				console.log(dto);
 
 				var mediaString = '';
-				if (dto.media != undefined) {
-					if (dto.medida[0] != undefined)
-					{
-						if (dto.media[0].mediaURL != undefined)
-							mediaString = '<img src="' + dto.medida[0].mediaURL + '"/>';
-					}
+				if (dto.media && dto.media.length > 0) {
+				    mediaString = toStaticHTML(dto.media[0].media_url)
 				}
 
 				var contentString = '<div id="content">' +
