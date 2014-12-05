@@ -66,6 +66,7 @@ namespace SimpleTweetMap.Web
 
 		private void ParseTweet(Tweetinvi.Core.Interfaces.ITweet tweet)
 		{
+		
 			if (tweet.Coordinates == null)
 				return;
 			var dto = new { coordinates = tweet.Coordinates, text = tweet.Text, sender = tweet.Creator.Name, time = tweet.CreatedAt, media = tweet.Media };

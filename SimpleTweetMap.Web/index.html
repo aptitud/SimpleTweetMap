@@ -16,6 +16,7 @@
 		}
 		#bodyContent{
 			margin-bottom: 10px;
+			font-weight: 400;
 		}
 
 		#content{
@@ -39,8 +40,6 @@
 			userHubProxy.client.tweet = function (dto) {
 				console.log(dto);
 
-
-
 				var contentString = '<div id="content">' +
 														'<h3 id="firstHeading">' + dto.sender + '</h3>&nbsp;-&nbsp;' +
 														'<time>' + dto.time + '</time>' +
@@ -53,10 +52,11 @@
 					content: contentString,
 					maxWidth: 400
 				});
-
+				var image = 'aptitud.png';
 				var marker = new google.maps.Marker({
 					position: new google.maps.LatLng(dto.coordinates.Latitude, dto.coordinates.Longitude),
 					map: map,
+					icon: image,
 					animation: google.maps.Animation.DROP,
 					title: dto.sender + " - " + dto.text
 				});
