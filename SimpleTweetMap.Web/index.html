@@ -20,17 +20,37 @@
 		var mapOptions;
 
 		$(function () {
+
 			var userHubProxy = $.connection.userHub;
 
 			userHubProxy.client.tweet = function (dto) {
 				console.log(dto);
+
+				var contentString = '<div id="content">' +
+														'<div id="siteNotice">' +
+														'</div>' +
+														'<h1 id="firstHeading" class="firstHeading">' + dto.sender + '</h1>' +
+														'<div id="bodyContent"><p>' +
+														dto.text + '</p>' +
+														'</div>' +
+														'</div>';
+
+				var infowindow = new google.maps.InfoWindow({
+					content: contentString
+				});
 
 				var marker = new google.maps.Marker({
 					position: new google.maps.LatLng(dto.coordinates.Latitude, dto.coordinates.Longitude),
 					map: map,
 					title: dto.sender + " - " + dto.text
 				});
+
+				google.maps.event.addListener(marker, 'click', function () {
+					infowindow.open(map, marker);
+				});
 			};
+
+			
 
 			$.connection.hub.start();
 		});
