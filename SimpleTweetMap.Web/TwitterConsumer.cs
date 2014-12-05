@@ -68,7 +68,7 @@ namespace SimpleTweetMap.Web
 		{
 			if (tweet.Coordinates == null)
 				return;
-			var dto = new { coordinates = tweet.Coordinates, text = tweet.Text, sender = tweet.Creator.Name, time = tweet.CreatedAt };
+			var dto = new { coordinates = tweet.Coordinates, text = tweet.Text, sender = tweet.Creator.Name, time = tweet.CreatedAt, media = tweet.Media };
 
 			GlobalHost.ConnectionManager.GetHubContext<UserHub>().Clients.All.tweet(dto);
 		}
