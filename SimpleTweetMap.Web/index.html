@@ -10,6 +10,19 @@
 			margin: 0px;
 			padding: 0px;
 		}
+		h3{
+			display:inline-block;
+			margin: 0;
+		}
+		#bodyContent{
+			margin-bottom: 10px;
+		}
+
+		#content{
+			line-height: 1.35;
+			overflow: hidden;
+			white-space: nowrap;
+		}
 	</style>
 	<script src="Scripts/jquery-1.10.2.min.js"></script>
 	<script src="Scripts/jquery.signalR-2.1.2.min.js"></script>
@@ -27,21 +40,22 @@
 				console.log(dto);
 
 				var contentString = '<div id="content">' +
-														'<div id="siteNotice">' +
-														'</div>' +
-														'<h1 id="firstHeading" class="firstHeading">' + dto.sender + '</h1>' +
+														'<h3 id="firstHeading">' + dto.sender + '</h3>&nbsp;-&nbsp;' +
+														'<time>' + dto.time + '</time>' +
 														'<div id="bodyContent"><p>' +
 														dto.text + '</p>' +
 														'</div>' +
 														'</div>';
 
 				var infowindow = new google.maps.InfoWindow({
-					content: contentString
+					content: contentString,
+					maxWidth: 400
 				});
 
 				var marker = new google.maps.Marker({
 					position: new google.maps.LatLng(dto.coordinates.Latitude, dto.coordinates.Longitude),
 					map: map,
+					animation: google.maps.Animation.DROP,
 					title: dto.sender + " - " + dto.text
 				});
 
