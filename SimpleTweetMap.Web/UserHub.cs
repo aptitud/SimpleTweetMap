@@ -20,6 +20,12 @@ namespace SimpleTweetMap.Web
 			this.broadCaster = broadCaster;
 		}
 
+		public override System.Threading.Tasks.Task OnConnected()
+		{
+			broadCaster.LoadTweets();
+			return base.OnConnected();
+		}
+
 		public void Hello(string message)
 		{
 			Clients.All.hello(message);

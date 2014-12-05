@@ -18,7 +18,33 @@ namespace SimpleTweetMap.Web
 		private Broadcaster(IHubConnectionContext<dynamic> clients)
 		{
 			Clients = clients;
-			Task.Factory.StartNew(()=>Init());
+			InitAsync();
+		}
+
+		public void InitAsync()
+		{
+			Task.Factory.StartNew(() => Init());
+		}
+
+		public void LoadTweets()
+		{
+			var accessToken = System.Configuration.ConfigurationManager.AppSettings["accessToken"];
+			var accessTokenSecret = System.Configuration.ConfigurationManager.AppSettings["accessTokenSecret"];
+			var consumerKey = System.Configuration.ConfigurationManager.AppSettings["consumerKey"];
+			var consumerSecret = System.Configuration.ConfigurationManager.AppSettings["consumerSecret"];
+
+			// Setup your application credentials
+			TwitterCredentials.ApplicationCredentials = TwitterCredentials.CreateCredentials(accessToken, accessTokenSecret, consumerKey, consumerSecret);
+
+			var searchParameter = Search.GenerateSearchTweetParameter("Aptitud_Sthlm");
+			//searchParameter.SearchType = SearchResultType.Recent;
+			searchParameter.MaximumNumberOfResults = 100;
+			var tweets = Search.SearchTweets(searchParameter);
+
+			foreach (var tweet in tweets)
+			{
+				ParseTweet(tweet);
+			}
 		}
 
 		internal void Init()
@@ -30,18 +56,6 @@ namespace SimpleTweetMap.Web
 
 			// Setup your application credentials
 			TwitterCredentials.ApplicationCredentials = TwitterCredentials.CreateCredentials(accessToken, accessTokenSecret, consumerKey, consumerSecret);
-
-			//var tweets = Search.SearchTweets("Aptitud");
-
-			var searchParameter = Search.GenerateSearchTweetParameter("Aptitud_Sthlm");
-			//searchParameter.SearchType = SearchResultType.Recent;
-			searchParameter.MaximumNumberOfResults = 100;
-			var tweets = Search.SearchTweets(searchParameter);
-			
-			foreach (var tweet in tweets)
-			{
-				ParseTweet(tweet);
-			}
 
 			// Access the filtered stream
 			var filteredStream = Stream.CreateFilteredStream();
