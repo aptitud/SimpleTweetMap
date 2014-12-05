@@ -5,6 +5,7 @@
 *.suo
 *.user
 *.sln.docstates
+AppSettings.config
 
 # Build results
 [Dd]ebug/
