@@ -3,14 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{C7452DD4-B6D8-4A51-97C2-D6AA26EC52EC}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{CCBFC22D-F701-4891-A9BC-04A26B698FB4}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "ClassLibrary1\Server.csproj", "{D41F8216-A844-46FB-BC4B-F40FA3A19ED9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTweetMap.Web", "..\SimpleTweetMap.Web\SimpleTweetMap.Web.csproj", "{EACE8ECB-147C-4144-BC59-60F40A626C32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,14 +16,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C7452DD4-B6D8-4A51-97C2-D6AA26EC52EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7452DD4-B6D8-4A51-97C2-D6AA26EC52EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C7452DD4-B6D8-4A51-97C2-D6AA26EC52EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C7452DD4-B6D8-4A51-97C2-D6AA26EC52EC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D41F8216-A844-46FB-BC4B-F40FA3A19ED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D41F8216-A844-46FB-BC4B-F40FA3A19ED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D41F8216-A844-46FB-BC4B-F40FA3A19ED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D41F8216-A844-46FB-BC4B-F40FA3A19ED9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EACE8ECB-147C-4144-BC59-60F40A626C32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EACE8ECB-147C-4144-BC59-60F40A626C32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EACE8ECB-147C-4144-BC59-60F40A626C32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EACE8ECB-147C-4144-BC59-60F40A626C32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
