@@ -22,13 +22,13 @@
 		$(function () {
 			var userHubProxy = $.connection.userHub;
 
-			userHubProxy.client.hello = function (message) {
-				console.log(message);
+			userHubProxy.client.tweet = function (dto) {
+				console.log(dto);
 
 				var marker = new google.maps.Marker({
-					position: mapOptions.center,
+					position: new google.maps.LatLng(dto.coordinates.Latitude, dto.coordinates.Longitude),
 					map: map,
-					title: message
+					title: dto.sender + " - " + dto.text
 				});
 			};
 

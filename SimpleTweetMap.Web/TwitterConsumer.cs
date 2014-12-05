@@ -39,10 +39,11 @@ namespace SimpleTweetMap.Web
 
 		private static void ParseTweet(Tweetinvi.Core.Events.EventArguments.MatchedTweetReceivedEventArgs args)
 		{
-			if (args.Tweet.Place == null)
+			if (args.Tweet.Coordinates == null)
 				return;
+			var dto = new { coordinates = args.Tweet.Coordinates, text = args.Tweet.Text, sender = args.Tweet.Creator.Name };
 
-			GlobalHost.ConnectionManager.GetHubContext<UserHub>().Clients.All.hello(args.Tweet.Text);
+			GlobalHost.ConnectionManager.GetHubContext<UserHub>().Clients.All.tweet(dto);
 		}
 
 		public static Broadcaster Instance
