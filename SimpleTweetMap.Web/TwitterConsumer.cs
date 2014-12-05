@@ -33,8 +33,16 @@ namespace SimpleTweetMap.Web
 			// Access the filtered stream
 			var filteredStream = Stream.CreateFilteredStream();
 			filteredStream.AddTrack("Aptitud_Sthlm");
-			filteredStream.MatchingTweetReceived += (sender, args) => { GlobalHost.ConnectionManager.GetHubContext<UserHub>().Clients.All.hello(args.Tweet.Text); };
+			filteredStream.MatchingTweetReceived += (sender, args) => { ParseTweet(args); };
 			filteredStream.StartStreamMatchingAllConditions();
+		}
+
+		private static void ParseTweet(Tweetinvi.Core.Events.EventArguments.MatchedTweetReceivedEventArgs args)
+		{
+			if (args.Tweet.Place == null)
+				return;
+
+			GlobalHost.ConnectionManager.GetHubContext<UserHub>().Clients.All.hello(args.Tweet.Text);
 		}
 
 		public static Broadcaster Instance
