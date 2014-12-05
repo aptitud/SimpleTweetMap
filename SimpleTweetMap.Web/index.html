@@ -40,13 +40,24 @@
 			userHubProxy.client.tweet = function (dto) {
 				console.log(dto);
 
+				var mediaString = '';
+				if (dto.media != undefined) {
+					if (dto.medida[0] != undefined)
+					{
+						if (dto.media[0].mediaURL != undefined)
+							mediaString = '<img src="' + dto.medida[0].mediaURL + '"/>';
+					}
+				}
+
 				var contentString = '<div id="content">' +
 														'<h3 id="firstHeading">' + dto.sender + '</h3>&nbsp;-&nbsp;' +
 														'<time>' + dto.time + '</time>' +
 														'<div id="bodyContent"><p>' +
 														toStaticHTML(dto.text) + '</p>' +
+														'<p>' + mediaString +  '</p>' +
 														'</div>' +
 														'</div>';
+
 
 				var infowindow = new google.maps.InfoWindow({
 					content: contentString,
@@ -69,6 +80,9 @@
 			var linkParser = linkParser || {};
 
 			function toStaticHTML(message) {
+				if (message == 'undefined')
+					return '';
+
 				if (hasLinks(message) === false) {
 					return message;
 				}
